@@ -5,8 +5,9 @@
 <div>
     @foreach ($guitars as $guitar)
     <div>
-        <h3>{{$guitar["name"]}}</h3>
+        <h3> <a href="{{ route ('guitars.show', ['guitar'=>$guitar['id']])}}">{{$guitar["name"]}}</a></h3>
         <h5>{{$guitar["id"]}}</h5>
+
     </div>
     @endforeach
 </div>

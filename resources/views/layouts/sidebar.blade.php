@@ -5,7 +5,7 @@
             <img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
         </div>
         <div class="w3-col s8 w3-bar">
-            <span>Welcome, <strong>Petros</strong></span><br>
+            <span>Welcome, <strong>Petros-Koulianos</strong></span><br>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
@@ -20,7 +20,7 @@
         <a href="{{route ('home.index')}}" class="w3-bar-item w3-button w3-padding  {{Request::is('/')? 'w3-blue': ''}}"><i class="fa fa-users fa-fw"></i>  Home</a>
         <a href="{{route ('home.about')}}" class="w3-bar-item w3-button w3-padding {{Request::is('about')? 'w3-blue': ''}}"><i class="fa fa-eye fa-fw"></i>  About</a>
         <a href="{{route ('home.contact')}}" class="w3-bar-item w3-button w3-padding {{Request::is('contact')? 'w3-blue': ''}}"><i class="fa fa-users fa-fw"></i>  Contact</a>
-        <a href="{{route ('guitars.index')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Guitars</a>
+        <a href="{{route ('guitars.index')}}" class="w3-bar-item w3-button w3-padding {{Request::is('guitars')? 'w3-blue': ''}}"><i class="fa fa-bullseye fa-fw"></i>  Guitars</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  General</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>

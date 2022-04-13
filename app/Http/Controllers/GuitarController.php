@@ -16,6 +16,26 @@ class GuitarController extends Controller
         );
     }
 
+    /**
+     * @param int $guitar
+     * @return \Illuminate\Http\Client\Response
+     */
+    public function show($guitar)
+    {
+        $guitars = self::getData();
+        $index = array_search($guitar, array_column($guitars, 'id'));
+
+        if ($index === false) {
+            abort(404);
+        }
+        return view(
+            'guitars.show',
+            [
+                'guitar' => $guitars[$index]
+            ]
+        );
+    }
+
     public static function getData()
     {
         return [
