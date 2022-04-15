@@ -21,7 +21,7 @@
         <a href="{{route ('home.about')}}" class="w3-bar-item w3-button w3-padding {{Request::is('about')? 'w3-blue': ''}}"><i class="fa fa-eye fa-fw"></i>  About</a>
         <a href="{{route ('home.contact')}}" class="w3-bar-item w3-button w3-padding {{Request::is('contact')? 'w3-blue': ''}}"><i class="fa fa-users fa-fw"></i>  Contact</a>
         <a href="{{route ('guitars.index')}}" class="w3-bar-item w3-button w3-padding {{Request::is('guitars')? 'w3-blue': ''}}"><i class="fa fa-bullseye fa-fw"></i>  Guitars</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
+        <a href="{{route ('guitars.create')}}" class="w3-bar-item w3-button w3-padding {{Request::is('guitars/create')? 'w3-blue': ''}}"><i class="fa fa-bell fa-fw"></i>  Create</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  General</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a><br><br>

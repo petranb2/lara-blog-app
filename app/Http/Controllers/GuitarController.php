@@ -2,47 +2,106 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Guitar;
+use App\Services\TestService;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use \Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class GuitarController extends Controller
 {
-    public function index()
+    public function index(TestService $testService)
     {
         return view(
             'guitars.index',
             [
-                'guitars' => self::getData()
+                'guitars' => Guitar::all()
+            ]
+        );
+    }
+
+    /**
+     * @param Guitar $guitar
+     * @return Application|Factory|View
+     */
+    public function show(Guitar $guitar)
+    {
+
+        return view(
+            'guitars.show',
+            [
+                'guitar' => $guitar
             ]
         );
     }
 
     /**
      * @param int $guitar
-     * @return \Illuminate\Http\Client\Response
+     * @return Application|Factory|View
      */
-    public function show($guitar)
+    public function edit(int $guitar)
     {
-        $guitars = self::getData();
-        $index = array_search($guitar, array_column($guitars, 'id'));
 
-        if ($index === false) {
-            abort(404);
-        }
         return view(
-            'guitars.show',
+            'guitars.edit',
             [
-                'guitar' => $guitars[$index]
+                'guitar' => Guitar::findOrFail($guitar)
             ]
         );
     }
 
-    public static function getData()
+    /**
+     * @return Application|Factory|View
+     */
+    public function create()
     {
-        return [
-            ['id' => 1, "name" => 'Gibson'],
-            ['id' => 2, "name" => 'Starla 2'],
-            ['id' => 3, "name" => 'Explorer'],
-            ['id' => 4, "name" => 'Talman']
-        ];
+        return view('guitars.create');
     }
+
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function store(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'guitar_name' => 'required',
+            'brand' => 'required',
+            'year' => ['required', 'integer'],
+        ]);
+        $guitar = new Guitar();
+        $guitar->name = strip_tags($request->input('guitar_name'));
+        $guitar->brand = strip_tags($request->input('brand'));
+        $guitar->year_made = strip_tags($request->input('year'));
+
+        $guitar->save();
+
+        return redirect()->route('guitars.index');
+    }
+
+    /**
+     * @param Request $request
+     * @param $guitar
+     * @return RedirectResponse
+     */
+    public function update(Request $request, $guitar): RedirectResponse
+    {
+        $request->validate([
+            'guitar_name' => 'required',
+            'brand' => 'required',
+            'year' => ['required', 'integer'],
+        ]);
+        $record = Guitar::findOrFail($guitar);
+        $record->name = strip_tags($request->input('guitar_name'));
+        $record->brand = strip_tags($request->input('brand'));
+        $record->year_made = strip_tags($request->input('year'));
+
+        $record->save();
+
+        return redirect()->route('guitars.show', $guitar);
+    }
+
 }

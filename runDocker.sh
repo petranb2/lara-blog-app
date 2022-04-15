@@ -10,5 +10,5 @@ echo 'Remove the old container'
 sudo docker rm laravel-blog
 echo '*********************************************'
 echo 'Start the new container: exposed port 5000 container name:interoperability-backend'
-sudo docker run -p 5000:8000 -v $(pwd)/blog-app:/var/www/html/blog-app --name laravel-blog -d laravel:blog
+sudo docker run -p 5000:8000 -v $(pwd):/var/www/html/blog-app --name laravel-blog -d laravel:blog
 echo '*********************************************'

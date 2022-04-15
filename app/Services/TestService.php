@@ -4,7 +4,7 @@ namespace App\Services;
 class TestService
 {
 
-    public function message()
+    public function message(): array
     {
         return [
             'name' => 'Abigail',

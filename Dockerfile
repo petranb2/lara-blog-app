@@ -27,7 +27,5 @@ ENV PATH $NODE_HOME/bin:$PATH
 
 RUN curl https://nodejs.org/dist/v$NODE_VERSION/$NODE_PACKAGE.tar.gz | tar -xzC /opt/
 
-# RUN mkdir /var/www/html/blog-app
-# ADD . /var/www/html/blog-app
 WORKDIR /var/www/html/blog-app
 CMD php artisan serve --host=0.0.0.0
